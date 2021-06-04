@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 //hata alırsan asağıda fazladan  city ve job u sil 
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","employer,city,job"})
+
 public class JobAdvertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

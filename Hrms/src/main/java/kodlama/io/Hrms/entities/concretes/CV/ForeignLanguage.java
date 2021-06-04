@@ -8,7 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlama.io.Hrms.entities.concretes.Job;
 import kodlama.io.Hrms.entities.concretes.JobAdvertisement;
@@ -22,6 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "foreign_languages")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cvMain"})
 public class ForeignLanguage {
 
 	@Id
@@ -29,8 +35,8 @@ public class ForeignLanguage {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "cv_id")
-	private int CvId;
+//	@Column(name = "cv_id")
+//	private int CvId;
 
 	@Column(name = "language_name")
 	private String languageName;
@@ -40,5 +46,9 @@ public class ForeignLanguage {
 
 	@Column(name = "addition_date")
 	private Date additionDate;
+
+	@ManyToOne()
+	@JoinColumn(name = "cv_id")
+	private CvMain cvMain;
 
 }

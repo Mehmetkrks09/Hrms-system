@@ -13,6 +13,7 @@ import kodlama.io.Hrms.Core.Results.SuccessDataResult;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.CvMainDao;
 import kodlama.io.Hrms.Service.CloudinaryService;
+import kodlama.io.Hrms.entities.concretes.JobSeeker;
 import kodlama.io.Hrms.entities.concretes.CV.CvMain;
 
 @Service
@@ -41,6 +42,11 @@ public class CvMainManager implements CvMainService {
 		cvMain.setPhoto(result.getData().get("url").toString());
 		this.cvMainDao.save(cvMain);
 		return new SuccessDataResult<>("Fotoğrafınız başarıyla kaydedildi.");
+	}
+
+	@Override
+	public DataResult<CvMain> getByJobSeekerId(int jobSeekerId) {
+		return new SuccessDataResult<CvMain>(this.cvMainDao.getByJobSeekerId(jobSeekerId),"Data Listelendi");
 	}
 
 	

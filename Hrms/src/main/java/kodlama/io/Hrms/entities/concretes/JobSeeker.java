@@ -1,15 +1,16 @@
 package kodlama.io.Hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-
-
+import kodlama.io.Hrms.entities.concretes.CV.CvMain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,5 +36,5 @@ public class JobSeeker extends User {
 
 	@Column(name = "birth_year")
 	private Date birthYear;
-
+	
 }

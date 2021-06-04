@@ -10,5 +10,5 @@ import kodlama.io.Hrms.entities.concretes.CV.School;
 
 public interface CvMainDao extends JpaRepository<CvMain,Integer> {
 
-	CvMain getByJobSeekerId(int jobSeekerId); 
+	List<CvMain> getByJobSeekerId(int jobSeekerId); 
 }

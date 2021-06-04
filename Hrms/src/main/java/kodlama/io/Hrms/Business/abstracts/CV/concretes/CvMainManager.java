@@ -1,6 +1,7 @@
 package kodlama.io.Hrms.Business.abstracts.CV.concretes;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -45,8 +46,8 @@ public class CvMainManager implements CvMainService {
 	}
 
 	@Override
-	public DataResult<CvMain> getByJobSeekerId(int jobSeekerId) {
-		return new SuccessDataResult<CvMain>(this.cvMainDao.getByJobSeekerId(jobSeekerId),"Data Listelendi");
+	public DataResult<List<CvMain>> getByJobSeekerId(int jobSeekerId) {
+		return new SuccessDataResult<List<CvMain>>(this.cvMainDao.getByJobSeekerId(jobSeekerId),"Data Listelendi");
 	}
 
 	

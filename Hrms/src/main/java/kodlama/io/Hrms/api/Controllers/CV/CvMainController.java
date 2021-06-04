@@ -1,6 +1,7 @@
 package kodlama.io.Hrms.api.Controllers.CV;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -50,7 +51,7 @@ public class CvMainController {
 	}
 
 	@GetMapping("/getByJobSeekerId")
-	public DataResult<CvMain> getByJobSeekerId( int jobSeekerId) {
+	public DataResult<List<CvMain>> getByJobSeekerId( int jobSeekerId) {
 		return this.cvMainService.getByJobSeekerId(jobSeekerId);
 
 	}

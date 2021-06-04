@@ -52,6 +52,8 @@ public class JobExperience {
 
 	@Column(name = "addition_date")
 	private Date additionDate;
+	
+	
 	@ManyToOne()
 	@JoinColumn(name = "cv_id")
 	private CvMain cvMain;

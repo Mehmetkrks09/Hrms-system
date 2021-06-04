@@ -18,7 +18,7 @@ public class UserCheckManager implements UserCheckService {
 	@Override
 	public boolean isValidEMail(String email) {
 
-		Pattern validMailPattern = Pattern.compile("^(.+)@(.+)$");
+		Pattern validMailPattern = Pattern.compile("^(.+)(.+)$");
 		Matcher validMailMatcher = validMailPattern.matcher(email);
 		return validMailMatcher.matches();
 	}

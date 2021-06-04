@@ -53,7 +53,7 @@ public class School {
 	@Column(name = "addition_date")
 	private Date additionDate;
 
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "cv_id")
 	private CvMain cvMain;
 

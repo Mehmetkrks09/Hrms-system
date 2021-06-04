@@ -29,7 +29,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cv")
-
 public class CvMain {
 
 	@Id
@@ -63,7 +62,7 @@ public class CvMain {
 	private List<ForeignLanguage> foreignLanguage;
 
 	@OneToMany(mappedBy = "cvMain")
-	private List<JobExperience> jobExperience;
+    private List<JobExperience> jobExperience;
 
 	@OneToMany(mappedBy = "cvMain")
 	private List<School> school;

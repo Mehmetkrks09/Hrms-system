@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Employer extends User {
 
 	@Column(name = "company_name")

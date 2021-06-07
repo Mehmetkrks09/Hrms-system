@@ -47,12 +47,12 @@ public class JobSeekerManager implements JobSeekerService {
 		if (isFill(jobSeeker)) {
 			return new ErrorResult("Bütün alanları doldurunuz");
 
-		} else if (userCheckService.isValidEMail(jobSeeker.getEmail())) {
+		}  if (userCheckService.isValidEMail(jobSeeker.getEmail())) {
 			return new ErrorResult(" mail de Karakter kurallarına uyunuz");
-		} else if (jobSeekerDao.existsByemail(jobSeeker.getEmail())) {
+		}  if (jobSeekerDao.existsByemail(jobSeeker.getEmail())) {
 			return new ErrorResult(jobSeeker.getEmail() + " Sistemde kayıtlı ");
 
-		} else if (jobSeekerDao.existsBynationalityId(jobSeeker.getNationalityId())) {
+		}  if (jobSeekerDao.existsBynationalityId(jobSeeker.getNationalityId())) {
 			return new ErrorResult(jobSeeker.getNationalityId() + " Tc no Sistemde Kayıtlı");
 		} else {
 			validatorService.sendVerificationMail(jobSeeker);

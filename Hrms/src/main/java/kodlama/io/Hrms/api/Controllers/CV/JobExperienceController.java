@@ -2,6 +2,7 @@ package kodlama.io.Hrms.api.Controllers.CV;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ import kodlama.io.Hrms.entities.concretes.CV.JobExperience;
 import kodlama.io.Hrms.entities.concretes.CV.School;
 
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/cv/jobExperience")
 public class JobExperienceController {

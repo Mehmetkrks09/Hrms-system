@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.api.Controllers.CV;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +10,7 @@ import kodlama.io.Hrms.Business.abstracts.CV.abstracts.ForeignLanguageService;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.CV.ForeignLanguage;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/cv/foreignLanguage")
 public class ForeignLanguageController {

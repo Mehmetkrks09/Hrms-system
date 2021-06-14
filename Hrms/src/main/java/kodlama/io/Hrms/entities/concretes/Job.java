@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -39,6 +40,7 @@ public class Job {
 	@Column(name="job_name")
 	private String jobName;
 	
+	@JsonIgnore()
 	@OneToMany(mappedBy="job",cascade = {CascadeType.ALL})
 	private List<JobAdvertisement> jobAdvertisement;
 	

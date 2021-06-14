@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -44,7 +45,7 @@ public class Employer extends User {
 	@Column(name = "system_personnel_verify")
 	private boolean systemPersonnelVerify;
 	
-	
+	@JsonIgnore()
 	@OneToMany(mappedBy = "employer",cascade = {CascadeType.ALL})
 	private List<JobAdvertisement> jobAdvertisement;
 

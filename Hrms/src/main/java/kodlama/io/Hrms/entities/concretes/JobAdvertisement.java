@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "job_advertisements")
+
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -60,17 +62,21 @@ public class JobAdvertisement {
 
 	@ManyToOne()
 	@JoinColumn(name = "job_position_id")
+
 	private Job job;
 
 	@ManyToOne()
 	@JoinColumn(name = "city_id")
+
 	private City city;
 
 	@ManyToOne()
+
 	@JoinColumn(name = "way_of_working_id")
 	private WayOfWorking wayOfWorking;
 
 	@ManyToOne()
+
 	@JoinColumn(name = "working_time_id")
 	private WorkingTime workingTime;
 }

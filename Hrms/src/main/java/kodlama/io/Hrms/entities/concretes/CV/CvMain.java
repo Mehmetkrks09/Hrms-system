@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlama.io.Hrms.entities.concretes.Job;
@@ -57,20 +58,26 @@ public class CvMain {
 
 	@Column(name = "active")
 	private boolean active;
-
+	
+	
 	@OneToMany(mappedBy = "cvMain")
 	private List<ForeignLanguage> foreignLanguage;
-
+	
+	
 	@OneToMany(mappedBy = "cvMain")
     private List<JobExperience> jobExperience;
-
+	
+	
 	@OneToMany(mappedBy = "cvMain")
 	private List<School> school;
+	
 	
 	@OneToOne()
 	@JoinColumn(name = "jobSeeker_id")
 	private JobSeeker jobSeeker;
 	
+	
+
 	@OneToMany(mappedBy = "cvMain")
 	private List<Department> department;
 

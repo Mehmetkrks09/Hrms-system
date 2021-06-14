@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -43,6 +44,7 @@ public class Department {
 	private Date additionDate;
 
 	@ManyToOne()
+	@JsonIgnore()
 	@JoinColumn(name = "cv_id")
 	private CvMain cvMain;
 

@@ -24,7 +24,7 @@ public class CityManager implements CityService {
 
 	@Override
 	public Result add(City city) {
-		this.cityDao.save(city);
+		this.cityDao.saveAndFlush(city);
 		return new SuccessResult("City Has Been Added");
 	}
 

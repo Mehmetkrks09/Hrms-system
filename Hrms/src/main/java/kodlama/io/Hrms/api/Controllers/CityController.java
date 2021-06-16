@@ -3,6 +3,7 @@ package kodlama.io.Hrms.api.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import kodlama.io.Hrms.entities.concretes.City;
 import kodlama.io.Hrms.entities.concretes.Employee;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/city")
 public class CityController {
 

@@ -34,10 +34,10 @@ public class JobAdvertisementController {
     public DataResult<List<JobAdvertisement>> getAll(){
         return this.jobAdvertisementService.getAll();
     }
-//    @GetMapping("getAllByEmployer")
-//    DataResult<List<JobAdvertisement>> getAllByEmployer(@RequestParam int employerId){
-//        return jobAdvertisementService.getByEmployerIdAndIsActiveTrue(employerId);
-//    }
+    @GetMapping("getAllByEmployer")
+    DataResult<List<JobAdvertisement>> getAllByEmployer(@RequestParam int employerId){
+        return jobAdvertisementService.getByEmployerIdAndIsActiveTrue(employerId);
+    }
 
     @GetMapping("getByIsActiveTrue")
     DataResult<List<JobAdvertisement>> getByIsActiveTrue(){

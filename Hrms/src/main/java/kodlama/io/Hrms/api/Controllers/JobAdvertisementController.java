@@ -18,6 +18,7 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.JobAdvertisement;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobAdvertisementDto;
 
 @CrossOrigin
 @RestController
@@ -49,9 +50,9 @@ public class JobAdvertisementController {
         return jobAdvertisementService.getByDeadlineLessThanEqual(date);
     }
     @PostMapping("/add")
-    public Result add(@RequestBody JobAdvertisement jobAdvertisement){
+    public Result add(@RequestBody JobAdvertisementDto  jobAdvertisementDto){
        
-        this.jobAdvertisementService.add(jobAdvertisement);
+        this.jobAdvertisementService.add(jobAdvertisementDto);
         return new  SuccessResult("iş İlanı Başarıyla Eklendi");
         
     }

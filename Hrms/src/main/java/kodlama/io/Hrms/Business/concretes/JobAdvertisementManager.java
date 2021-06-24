@@ -12,8 +12,14 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessDataResult;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
+import kodlama.io.Hrms.DataAccess.abstracts.CityDao;
+import kodlama.io.Hrms.DataAccess.abstracts.EmployerDao;
 import kodlama.io.Hrms.DataAccess.abstracts.JobAdvertisementDao;
+import kodlama.io.Hrms.DataAccess.abstracts.JobDao;
+import kodlama.io.Hrms.DataAccess.abstracts.WayOfWorkingDao;
+import kodlama.io.Hrms.DataAccess.abstracts.WorkingTimeDao;
 import kodlama.io.Hrms.entities.concretes.JobAdvertisement;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobAdvertisementDto;
 
 
 @Service
@@ -21,10 +27,26 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 
 	  private JobAdvertisementDao jobAdvertisementDao;
-	    @Autowired
-	    public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao) {
-	        this.jobAdvertisementDao = jobAdvertisementDao;
-	    }
+	  private EmployerDao employerDao;
+	  private JobDao jobDao;
+	  private WayOfWorkingDao wayOfWorkingDao;
+	  private WorkingTimeDao workingTimeDao;
+	  private CityDao cityDao;
+	  
+	  
+	  @Autowired
+	    public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, EmployerDao employerDao, JobDao jobDao,CityDao cityDao,
+			WayOfWorkingDao wayOfWorkingDao, WorkingTimeDao workingTimeDao) {
+		super();
+		this.jobAdvertisementDao = jobAdvertisementDao;
+		this.employerDao = employerDao;
+		this.jobDao = jobDao;
+		this.wayOfWorkingDao = wayOfWorkingDao;
+		this.workingTimeDao = workingTimeDao;
+		this.cityDao=cityDao;
+	}
+		
+	   
 
 	    @Override
 	    public DataResult<List<JobAdvertisement>> getAll() {
@@ -47,8 +69,25 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	    }
 	    @Override
-	    public Result add(JobAdvertisement jobAdvertisement) {
-	       jobAdvertisementDao.saveAndFlush(jobAdvertisement);
-	        return new SuccessResult("Eklendi");
-	    }
+	    public Result add(JobAdvertisementDto jobAdvertisementDto) {
+			JobAdvertisement jobAdvertisement = new JobAdvertisement();
+			jobAdvertisement.setId(1);
+			jobAdvertisement.setDescription(jobAdvertisementDto.getDescription());
+			jobAdvertisement.setMinSalary(jobAdvertisementDto.getSalaryMin());
+			jobAdvertisement.setMaxSalary(jobAdvertisementDto.getSalaryMax());
+			jobAdvertisement.setNumberOfOpenPositions(jobAdvertisementDto.getNumberOfOpenPositions());
+			jobAdvertisement.setCreatedDate(jobAdvertisementDto.getCreatedDate());
+
+			jobAdvertisement.setDeadline(jobAdvertisementDto.getDeadline());	
+			jobAdvertisement.setActive(true);
+			
+			jobAdvertisement.setDeleted(false);
+			jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
+			jobAdvertisement.setJob(this.jobDao.getById(jobAdvertisementDto.getJobId()));
+			jobAdvertisement.setCity(this.cityDao.getByCityId(jobAdvertisementDto.getCityCityid()));
+			jobAdvertisement.setWorkingTime(this.workingTimeDao.getById(jobAdvertisementDto.getWorkingTimeId()));
+			jobAdvertisement.setWayOfWorking(this.wayOfWorkingDao.getById(jobAdvertisementDto.getWayOfWorkingId()));
+			this.jobAdvertisementDao.save(jobAdvertisement);
+			return new SuccessResult("İş ilani başarı şekilde eklendi");
+}
 }

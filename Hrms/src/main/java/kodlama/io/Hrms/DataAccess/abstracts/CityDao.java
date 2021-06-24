@@ -6,5 +6,5 @@ import kodlama.io.Hrms.entities.concretes.City;
 import kodlama.io.Hrms.entities.concretes.Employee;
 
 public interface CityDao extends JpaRepository<City,Integer> {
-
+City getByCityId (City city);
 }

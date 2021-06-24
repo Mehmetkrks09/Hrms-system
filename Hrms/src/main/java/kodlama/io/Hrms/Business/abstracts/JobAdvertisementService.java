@@ -8,6 +8,7 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.DataAccess.abstracts.JobAdvertisementDao;
 import kodlama.io.Hrms.entities.concretes.JobAdvertisement;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobAdvertisementDto;
 
 
 public interface JobAdvertisementService {
@@ -15,5 +16,5 @@ public interface JobAdvertisementService {
   DataResult<List<JobAdvertisement>> getByEmployerIdAndIsActiveTrue(int employerId);
 	    DataResult<List<JobAdvertisement>> getByIsActiveTrue();
 	    DataResult<List<JobAdvertisement>> getByDeadlineLessThanEqual(String date);
-	    Result add(JobAdvertisement jobAdvertisement);
+	    Result add(JobAdvertisementDto  jobAdvertisementDto);
 }

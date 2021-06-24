@@ -50,10 +50,10 @@ public class JobAdvertisement {
 
 	
 	@Column(name = "creationDate")
-	private String createdDate;
+	private LocalDate createdDate;
 
 	@Column(name = "deadline")
-	private String deadline;
+	private LocalDate deadline;
 
 	@Column(name = "is_deleted")
 	private boolean isDeleted = false;

@@ -3,8 +3,11 @@ package kodlama.io.Hrms.api.Controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,10 +53,10 @@ public class JobAdvertisementController {
         return jobAdvertisementService.getByDeadlineLessThanEqual(date);
     }
     @PostMapping("/add")
-    public Result add(@RequestBody JobAdvertisementDto  jobAdvertisementDto){
+    public Result add(@Valid @RequestBody JobAdvertisementDto  jobAdvertisementDto){
        
-        this.jobAdvertisementService.add(jobAdvertisementDto);
-        return new  SuccessResult("iş İlanı Başarıyla Eklendi");
+    	return this.jobAdvertisementService.add(jobAdvertisementDto);
         
     }
+   
 }

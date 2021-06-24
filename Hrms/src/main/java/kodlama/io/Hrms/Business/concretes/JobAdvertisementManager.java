@@ -71,7 +71,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	    @Override
 	    public Result add(JobAdvertisementDto jobAdvertisementDto) {
 			JobAdvertisement jobAdvertisement = new JobAdvertisement();
-			jobAdvertisement.setId(0);
+			jobAdvertisement.setId(1);
 			jobAdvertisement.setDescription(jobAdvertisementDto.getDescription());
 			jobAdvertisement.setMinSalary(jobAdvertisementDto.getSalaryMin());
 			jobAdvertisement.setMaxSalary(jobAdvertisementDto.getSalaryMax());
@@ -84,7 +84,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			jobAdvertisement.setDeleted(false);
 			jobAdvertisement.setEmployer(this.employerDao.getById(jobAdvertisementDto.getEmployerId()));
 			jobAdvertisement.setJob(this.jobDao.getById(jobAdvertisementDto.getJobId()));
-			jobAdvertisement.setCity(this.cityDao.getByCityId(jobAdvertisementDto.getCityId()));
+			jobAdvertisement.setCity(this.cityDao.getById(jobAdvertisementDto.getCityId()));
 			jobAdvertisement.setWorkingTime(this.workingTimeDao.getById(jobAdvertisementDto.getWorkingTimeId()));
 			jobAdvertisement.setWayOfWorking(this.wayOfWorkingDao.getById(jobAdvertisementDto.getWayOfWorkingId()));
 			this.jobAdvertisementDao.save(jobAdvertisement);

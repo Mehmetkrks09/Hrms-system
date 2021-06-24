@@ -53,7 +53,7 @@ public class JobAdvertisementController {
         return jobAdvertisementService.getByDeadlineLessThanEqual(date);
     }
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody JobAdvertisementDto  jobAdvertisementDto){
+    public Result add( @RequestBody JobAdvertisementDto  jobAdvertisementDto){
        
     	return this.jobAdvertisementService.add(jobAdvertisementDto);
         

@@ -39,8 +39,7 @@ public class CvMain {
 	@Column(name = "id")
 	private int id;
 
-//	@Column(name = "jobSeeker_id")
-//	private int jobSeeker_id;
+
 
 	@Column(name = "photo")
 	private String photo;
@@ -55,20 +54,20 @@ public class CvMain {
 	private String description;
 
 	@Column(name = "created_date")
-	private LocalDate createdDate=LocalDate.now();
+	private LocalDate createdDate;
 
 	@Column(name = "active")
 	private boolean active;
 	
-	
+	@JsonIgnore()
 	@OneToMany(mappedBy = "cvMain")
 	private List<ForeignLanguage> foreignLanguage;
 	
-	
+	@JsonIgnore()
 	@OneToMany(mappedBy = "cvMain")
     private List<JobExperience> jobExperience;
 	
-	
+	@JsonIgnore()
 	@OneToMany(mappedBy = "cvMain")
 	private List<School> school;
 	
@@ -78,7 +77,7 @@ public class CvMain {
 	private JobSeeker jobSeeker;
 	
 	
-
+	@JsonIgnore()
 	@OneToMany(mappedBy = "cvMain")
 	private List<Department> department;
 

@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -46,13 +47,13 @@ public class School {
 	private String department;
 
 	@Column(name = "start_year")
-	private Date StartYear;
+	private LocalDate StartYear;
 
 	@Column(name = "finish_year")
-	private Date finishYear;
+	private LocalDate finishYear;
 
 	@Column(name = "addition_date")
-	private Date additionDate;
+	private LocalDate additionDate;
 
 	@ManyToOne()
 	@JsonIgnore()

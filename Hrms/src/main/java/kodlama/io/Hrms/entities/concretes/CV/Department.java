@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -38,10 +39,10 @@ public class Department {
 //	private int CvId;
 
 	@Column(name = "depatment_name")
-	private String depatmentName;
+	private String departmentName;
 
 	@Column(name = "addition_date")
-	private Date additionDate;
+	private LocalDate additionDate;
 
 	@ManyToOne()
 	@JsonIgnore()

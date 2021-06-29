@@ -26,6 +26,7 @@ import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.JobSeeker;
 import kodlama.io.Hrms.entities.concretes.CV.CvMain;
 import kodlama.io.Hrms.entities.concretes.CV.School;
+import kodlama.io.Hrms.entities.concretes.Dtos.CvMainDto;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/cv")
@@ -39,17 +40,17 @@ public class CvMainController {
 	}
 
 	@PostMapping("/add")
-	Result add(@RequestBody CvMain cvMain) {
+	Result add(@RequestBody CvMainDto cvMainDto) {
 
-		this.cvMainService.add(cvMain);
+		this.cvMainService.add(cvMainDto);
 		return new SuccessResult("Başarıyla Eklendi");
 	}
 
 	@PostMapping("/imageUpload")
-	public ResponseEntity<?> imageUpload(@RequestParam int curriculumVitaeId, @RequestParam MultipartFile multipartFile)
+	public ResponseEntity<?> imageUpload(@RequestParam int JobSeeker, @RequestParam MultipartFile multipartFile)
 			throws IOException {
 
-		return new ResponseEntity<>(this.cvMainService.imageUpload(curriculumVitaeId, multipartFile), HttpStatus.OK);
+		return new ResponseEntity<>(this.cvMainService.imageUpload(JobSeeker, multipartFile), HttpStatus.OK);
 	}
 
 	@GetMapping("/getByJobSeekerId")
@@ -58,7 +59,7 @@ public class CvMainController {
 
 	}
 	@PutMapping("/update")
-	Result update(@RequestBody CvMain cvMain) {
-		return this.cvMainService.update(cvMain);
+	Result update(@RequestBody CvMainDto cvMainDto) {
+		return this.cvMainService.update(cvMainDto);
 	}
 }

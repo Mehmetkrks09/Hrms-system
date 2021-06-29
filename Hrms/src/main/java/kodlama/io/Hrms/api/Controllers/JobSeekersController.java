@@ -18,6 +18,7 @@ import kodlama.io.Hrms.Business.abstracts.JobSeekerService;
 import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.entities.concretes.JobSeeker;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobSeekerDto;
 
 
 @CrossOrigin
@@ -41,9 +42,9 @@ public class JobSeekersController {
 	
 	
 	@PostMapping("/register")
-	public Result add(@RequestBody JobSeeker jobSeeker) {
+	public Result add(@RequestBody JobSeekerDto jobSeekerDto) {
 		
-		return this.jobSeekerService.register(jobSeeker);
+		return this.jobSeekerService.register(jobSeekerDto);
 	}
 
 }

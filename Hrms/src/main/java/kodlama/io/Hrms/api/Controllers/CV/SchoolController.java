@@ -21,6 +21,7 @@ import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.Employer;
 import kodlama.io.Hrms.entities.concretes.CV.School;
+import kodlama.io.Hrms.entities.concretes.Dtos.SchoolDto;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/cv/school")
@@ -34,9 +35,9 @@ public class SchoolController {
 	}
 
 	@PostMapping("/add")
-	Result add(@RequestBody School school) {
+	Result add(@RequestBody SchoolDto schoolDto) {
 
-		this.schoolService.add(school);
+		this.schoolService.add(schoolDto);
 		return new SuccessResult("Başarıyla Eklendi");
 	}
 
@@ -46,4 +47,8 @@ public class SchoolController {
 
 	}
 
+	@GetMapping("/getAll")
+	public DataResult<List<School>> getAll() {
+		return this.schoolService.getAll();
+}
 }

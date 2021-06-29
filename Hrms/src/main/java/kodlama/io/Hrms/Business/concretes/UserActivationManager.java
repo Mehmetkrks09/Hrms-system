@@ -11,8 +11,8 @@ import kodlama.io.Hrms.entities.concretes.User;
 public class UserActivationManager implements UserActivationService{
 
 	@Override
-	public Result userActivation(User user) {
-		return new SuccessResult(user.getEmail()+" aktif hale getirildi");
+	public Result userActivation(String email) {
+		return new SuccessResult(email+" aktif hale getirildi");
 	}
 
 }

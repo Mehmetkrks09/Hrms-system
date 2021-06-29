@@ -9,10 +9,11 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 
 import kodlama.io.Hrms.entities.concretes.CV.CvMain;
+import kodlama.io.Hrms.entities.concretes.Dtos.CvMainDto;
 
 public interface CvMainService {
-	Result add(CvMain cvMain);
+	Result add(CvMainDto cvMainDto);
 	DataResult<CvMain> imageUpload(int cvMain, MultipartFile multipartFile) throws IOException;
 	DataResult<List<CvMain>> getByJobSeekerId(int jobSeekerId); 
-	Result update(CvMain cvMain);
+	Result update(CvMainDto cvMainDto);
 }

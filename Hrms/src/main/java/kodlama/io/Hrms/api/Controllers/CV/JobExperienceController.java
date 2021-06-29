@@ -15,6 +15,7 @@ import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.CV.JobExperience;
 import kodlama.io.Hrms.entities.concretes.CV.School;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobExperienceDto;
 
 
 @CrossOrigin
@@ -29,15 +30,21 @@ public class JobExperienceController {
 	}
 	
 	@PostMapping("/add")
-	Result add(@RequestBody  JobExperience jobExperience)
+	Result add(@RequestBody  JobExperienceDto jobExperienceDto)
 	{
-		this.jobExperienceService.add(jobExperience);
+		this.jobExperienceService.add(jobExperienceDto);
 		return new SuccessResult("Job Experience Has Been Added!");
 		
 	}
 	@GetMapping("/ByGrudutionYear")
 	public DataResult<List<JobExperience>> ByGrudutionYear()
 	{ return this.jobExperienceService. getAllByOrderByFinishYearDesc();
+		
+		}
+	
+	@GetMapping("/getAll")
+	public DataResult<List<JobExperience>> getAll()
+	{ return this.jobExperienceService.getAll();
 		
 		}
 

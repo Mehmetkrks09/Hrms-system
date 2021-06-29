@@ -14,6 +14,7 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.CV.Department;
+import kodlama.io.Hrms.entities.concretes.Dtos.DepartmentDto;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/cv/department")
@@ -25,9 +26,9 @@ public class DepartmentController {
 		this.departmentService = departmentService;
 	}
 	@PostMapping("/add")
-	Result add(@RequestBody Department department)
+	Result add(@RequestBody DepartmentDto departmentDto)
 	{
-		this.departmentService.add(department);
+		this.departmentService.add(departmentDto);
 		return new SuccessResult("Department Has been Added!");
 	}
 	@GetMapping("/getAll")

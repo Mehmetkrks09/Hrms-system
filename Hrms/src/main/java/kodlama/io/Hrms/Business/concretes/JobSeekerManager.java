@@ -1,5 +1,7 @@
 package kodlama.io.Hrms.Business.concretes;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import kodlama.io.Hrms.Core.abstracts.ValidatorService;
 import kodlama.io.Hrms.DataAccess.abstracts.JobSeekerDao;
 import kodlama.io.Hrms.DataAccess.abstracts.UserDao;
 import kodlama.io.Hrms.entities.concretes.JobSeeker;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobAdvertisementDto;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobSeekerDto;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
@@ -43,27 +47,43 @@ public class JobSeekerManager implements JobSeekerService {
 	}
 
 	@Override
-	public Result register(JobSeeker jobSeeker) {
-		if (isFill(jobSeeker)) {
+	public Result register(JobSeekerDto jobSeekerDto) {
+		 JobSeeker jobSeeker=new JobSeeker();
+		if (isFill(jobSeekerDto)) {
 			return new ErrorResult("Bütün alanları doldurunuz");
 
-		}  if (userCheckService.isValidEMail(jobSeeker.getEmail())) {
+		}  if (userCheckService.isValidEMail(jobSeekerDto.getEmail())) {
 			return new ErrorResult(" mail de Karakter kurallarına uyunuz");
-		}  if (jobSeekerDao.existsByemail(jobSeeker.getEmail())) {
-			return new ErrorResult(jobSeeker.getEmail() + " Sistemde kayıtlı ");
+		}  if (jobSeekerDao.existsByemail(jobSeekerDto.getEmail())) {
+			return new ErrorResult(jobSeekerDto.getEmail() + " Sistemde kayıtlı ");
 
-		}  if (jobSeekerDao.existsBynationalityId(jobSeeker.getNationalityId())) {
-			return new ErrorResult(jobSeeker.getNationalityId() + " Tc no Sistemde Kayıtlı");
+		}  if (jobSeekerDao.existsBynationalityId(jobSeekerDto.getNationalityId())) {
+			return new ErrorResult(jobSeekerDto.getNationalityId() + " Tc no Sistemde Kayıtlı");
 		} else {
-			validatorService.sendVerificationMail(jobSeeker.getEmail());
-			userActivationService.userActivation(jobSeeker);
+			validatorService.sendVerificationMail(jobSeekerDto.getEmail());
+			userActivationService.userActivation(jobSeekerDto.getEmail());
+			
+			
+			
+			jobSeeker.setBirthYear(jobSeekerDto.getBirthYear());
+			jobSeeker.setCreatedOn(LocalDate.now());
+			jobSeeker.setEmail(jobSeekerDto.getEmail());
+			jobSeeker.setFirstName(jobSeekerDto.getFirstName());
+			jobSeeker.setId(jobSeekerDto.getId());
+			jobSeeker.setLastName(jobSeekerDto.getLastName());
+			jobSeeker.setNationalityId(jobSeekerDto.getNationalityId());
+			jobSeeker.setBirthYear(jobSeekerDto.getBirthYear());
+			
+			jobSeeker.setStatus(true);
+			
+			
 			this.jobSeekerDao.save(jobSeeker);
 			return new SuccessResult(" Başarılıyla kaydoldunuz");
 		}
 
 	}
 
-	public boolean isFill(JobSeeker jobSeeker) {
+	public boolean isFill(JobSeekerDto jobSeeker) {
 		if (jobSeeker.getFirstName() != null && jobSeeker.getLastName() != null && jobSeeker.getPassword() != null
 				&& jobSeeker.getBirthYear() != null && jobSeeker.getPassword() != null && jobSeeker.getEmail() != null
 				&& jobSeeker.getPassword() != null) {

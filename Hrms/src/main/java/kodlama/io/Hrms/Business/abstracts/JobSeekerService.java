@@ -5,10 +5,11 @@ import java.util.List;
 import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.entities.concretes.JobSeeker;
+import kodlama.io.Hrms.entities.concretes.Dtos.JobSeekerDto;
 
 
 public interface JobSeekerService {
 
-	Result register(JobSeeker jobSeeker);
+	Result register(JobSeekerDto jobSeekerDto);
 	DataResult<List<JobSeeker>> getAll();
 }

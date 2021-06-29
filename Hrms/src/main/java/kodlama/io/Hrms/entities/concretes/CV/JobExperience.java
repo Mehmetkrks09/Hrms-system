@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -46,13 +47,13 @@ public class JobExperience {
 	private String department;
 
 	@Column(name = "start_year")
-	private Date startYear;
+	private LocalDate startYear;
 
 	@Column(name = "finish_year")
-	private Date finishYear;
+	private LocalDate finishYear;
 
 	@Column(name = "addition_date")
-	private Date additionDate;
+	private LocalDate additionDate;
 	
 	
 	@ManyToOne()

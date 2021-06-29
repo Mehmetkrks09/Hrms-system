@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class ForeignLanguage {
 	private int languageLevel;
 
 	@Column(name = "addition_date")
-	private Date additionDate;
+	private LocalDate additionDate;
 
 	@ManyToOne()
 	@JsonIgnore()

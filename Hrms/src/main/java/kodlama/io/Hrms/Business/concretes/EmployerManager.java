@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.Business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,15 @@ import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.Core.abstracts.ValidatorService;
 import kodlama.io.Hrms.DataAccess.abstracts.EmployerDao;
 import kodlama.io.Hrms.entities.concretes.Employer;
+import kodlama.io.Hrms.entities.concretes.Dtos.EmployerDto;
 
 @Service
 public class EmployerManager implements EmployerService {
 	EmployerDao employerDao;
-	ValidatorService<Employer> validatorService;
+	ValidatorService validatorService;
 
 	@Autowired
-	public EmployerManager(EmployerDao employerDao, ValidatorService<Employer> validatorService) {
+	public EmployerManager(EmployerDao employerDao, ValidatorService validatorService) {
 		super();
 		this.employerDao = employerDao;
 		this.validatorService = validatorService;
@@ -29,17 +31,31 @@ public class EmployerManager implements EmployerService {
 	}
 
 	@Override
-	public Result register(Employer employer) {
-		if (!isAllFieldsFilled(employer)) {
+	public Result register(EmployerDto employerDto) {
+		if (!isAllFieldsFilled(employerDto)) {
 			return new ErrorResult("Bütün Alanları Doldurunuz");
 
 		} 
-		else if(employerDao.existsByemail(employer.getEmail())) {
-			return new ErrorResult(employer.getEmail() + " Sistemde kayıtlı ");
+		else if(employerDao.existsByemail(employerDto.getEmail())) {
+			return new ErrorResult(employerDto.getEmail() + " Sistemde kayıtlı ");
 		}
 		else {
-			this.employerDao.save(employer);
-validatorService.sendVerificationMail(employer);
+			validatorService.sendVerificationMail(employerDto.getEmail());
+			
+Employer employer=new Employer();
+employer.setPhoneNumber(employerDto.getPhoneNumber());
+employer.setId(1);
+employer.setCompanyName(employerDto.getCompanyName());
+employer.setEmail(employerDto.getEmail());
+employer.setPassword(employerDto.getPassword());
+employer.setWebAddress(employerDto.getWebAddress());
+employer.setEmailVerify(true);
+
+employer.setCreatedOn(LocalDate.now());
+employer.setStatus(true);
+employer.setSystemPersonnelVerify(true);
+employerDao.save(employer);
+
 			return new SuccessResult("İşveren Başarılıyla koydoldu");
 		}
 	}
@@ -49,7 +65,7 @@ validatorService.sendVerificationMail(employer);
 		return new SuccessDataResult<List<Employer>>(employerDao.findAll(), "  Başarılıyla Listelendi ");
 	}
 
-	public boolean isAllFieldsFilled(Employer employer) {
+	public boolean isAllFieldsFilled(EmployerDto employer) {
 
 		if (employer.getCompanyName() == "" || employer.getEmail() == "" || employer.getPhoneNumber() == ""
 				|| employer.getWebAddress() == "" || employer.getPassword() == "") {

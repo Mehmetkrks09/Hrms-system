@@ -17,4 +17,6 @@ public interface JobAdvertisementService {
 	    DataResult<List<JobAdvertisement>> getByIsActiveTrue();
 	    DataResult<List<JobAdvertisement>> getByDeadlineLessThanEqual(String date);
 	    Result add(JobAdvertisementDto  jobAdvertisementDto);
+	   DataResult<List<JobAdvertisement>> getByCityId(int cityId);
+	   DataResult<List<JobAdvertisement>> getByWayOfWorkingId(int id);
 }

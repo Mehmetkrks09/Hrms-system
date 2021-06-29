@@ -2,7 +2,7 @@ package kodlama.io.Hrms.Core.abstracts;
 
 import kodlama.io.Hrms.Core.Results.Result;
 
-public interface ValidatorService<T> {
+public interface ValidatorService {
 
-	  Result sendVerificationMail( T user );
+	  Result sendVerificationMail(String email );
 }

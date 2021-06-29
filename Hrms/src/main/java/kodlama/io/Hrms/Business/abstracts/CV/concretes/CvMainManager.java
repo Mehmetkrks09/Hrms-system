@@ -50,6 +50,11 @@ public class CvMainManager implements CvMainService {
 		return new SuccessDataResult<List<CvMain>>(this.cvMainDao.getByJobSeekerId(jobSeekerId),"Data Listelendi");
 	}
 
+	@Override
+	public Result update(CvMain cvMain) {
+		return new SuccessResult("Data Has Been Updated");
+	}
+
 	
 
 }

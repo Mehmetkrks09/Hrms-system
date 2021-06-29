@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import kodlama.io.Hrms.entities.concretes.CV.CvMain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +23,8 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "job_seekers")
+@Table(name = "job_seekers") 
+//hiberrnate lazy eklenecek
 @EqualsAndHashCode(callSuper = false)
 public class JobSeeker extends User {
 
@@ -37,4 +40,7 @@ public class JobSeeker extends User {
 	@Column(name = "birth_year")
 	private Date birthYear;
 
+	 @JsonIgnore	
+	 @OneToMany(mappedBy = "jobSeeker")
+	 private List<FavoriteAdvertisement> favoriteAdvertisement;
 }

@@ -58,5 +58,14 @@ public class JobAdvertisementController {
     	return this.jobAdvertisementService.add(jobAdvertisementDto);
         
     }
-   
+    @GetMapping("getByCityId")
+    DataResult<List<JobAdvertisement>> getByCityId(int id){
+        return jobAdvertisementService.getByCityId(id);
+    }
+
+    @GetMapping("getByWayOfWorking")
+    DataResult<List<JobAdvertisement>> getByWayOfWorking(int id){
+        return jobAdvertisementService.getByWayOfWorkingId(id);
+    }
+
 }

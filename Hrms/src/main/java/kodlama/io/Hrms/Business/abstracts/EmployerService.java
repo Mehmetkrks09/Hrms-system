@@ -5,9 +5,10 @@ import java.util.List;
 import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.entities.concretes.Employer;
+import kodlama.io.Hrms.entities.concretes.Dtos.EmployerDto;
 
 public interface EmployerService {
-	Result register(Employer employer);
+	Result register(EmployerDto employerDto);
 	DataResult<List<Employer>> getAll();
 
 }

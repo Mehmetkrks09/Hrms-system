@@ -7,13 +7,12 @@ import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.Core.abstracts.ValidatorService;
 
 @Service
-public class EmailValidatorManager<T> implements ValidatorService<T> {
+public class EmailValidatorManager implements ValidatorService {
+
 
 	@Override
-	public Result sendVerificationMail(T user) {
-		System.out.println("Doğrulama Linki Gönderildi");
-		return new SuccessResult("SuccessResult ile Doğrulama Linki Gönderildi mesajı");
-		
+	public Result sendVerificationMail(String email) {
+		return new SuccessResult(email +" Doğrulama Linki Gönderildi");
 	}
 
 	

@@ -2,6 +2,7 @@ package kodlama.io.Hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -82,4 +84,10 @@ public class JobAdvertisement {
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "working_time_id")
 	private WorkingTime workingTime;
+	
+	 @JsonIgnore
+	@OneToMany(mappedBy = "jobAdvertisement")
+    private List<FavoriteAdvertisement> favoriteAdvertisement;
+
+
 }

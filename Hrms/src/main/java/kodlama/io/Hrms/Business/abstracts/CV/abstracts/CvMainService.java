@@ -14,4 +14,5 @@ public interface CvMainService {
 	Result add(CvMain cvMain);
 	DataResult<CvMain> imageUpload(int cvMain, MultipartFile multipartFile) throws IOException;
 	DataResult<List<CvMain>> getByJobSeekerId(int jobSeekerId); 
+	Result update(CvMain cvMain);
 }

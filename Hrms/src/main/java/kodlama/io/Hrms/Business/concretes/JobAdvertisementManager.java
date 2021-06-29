@@ -90,4 +90,19 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 			this.jobAdvertisementDao.save(jobAdvertisement);
 			return new SuccessResult("İş ilani başarı şekilde eklendi");
 }
+
+
+
+		@Override
+		public DataResult<List<JobAdvertisement>> getByCityId(int cityId) {
+			return new SuccessDataResult<List<JobAdvertisement>>( jobAdvertisementDao.getByCityId(cityId));
+		}
+
+
+
+		@Override
+		public DataResult<List<JobAdvertisement>> getByWayOfWorkingId(int id) {
+			
+return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByWayOfWorkingId(id));
+		}
 }

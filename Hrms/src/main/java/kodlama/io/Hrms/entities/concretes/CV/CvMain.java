@@ -1,5 +1,6 @@
 package kodlama.io.Hrms.entities.concretes.CV;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class CvMain {
 	private String description;
 
 	@Column(name = "created_date")
-	private Date createdDate;
+	private LocalDate createdDate=LocalDate.now();
 
 	@Column(name = "active")
 	private boolean active;

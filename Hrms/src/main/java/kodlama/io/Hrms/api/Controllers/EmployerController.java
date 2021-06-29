@@ -17,6 +17,7 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.entities.concretes.Employer;
+import kodlama.io.Hrms.entities.concretes.Dtos.EmployerDto;
 
 
 @CrossOrigin
@@ -39,9 +40,9 @@ public DataResult<List<Employer>> getAll() {
 
 
 @PostMapping("/register")
-Result add(@RequestBody Employer employer) {
+Result add(@RequestBody EmployerDto employerDto) {
 	
-	this.employerService.register(employer);
-	return new SuccessResult("Başarıyla Eklendi");
+	return this.employerService.register(employerDto);
+	
 }
 }

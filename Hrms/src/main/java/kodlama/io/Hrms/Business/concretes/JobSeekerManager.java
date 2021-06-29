@@ -25,11 +25,11 @@ public class JobSeekerManager implements JobSeekerService {
 	private JobSeekerDao jobSeekerDao;
 	private UserCheckService userCheckService;
 	private UserActivationService userActivationService;
-	private ValidatorService<JobSeeker> validatorService;
+	private ValidatorService validatorService;
 
 	@Autowired
 	public JobSeekerManager(JobSeekerDao jobSeekerDao, UserDao userDao, UserCheckService userCheckService,
-			ValidatorService<JobSeeker> validatorService, UserActivationService userActivationService) {
+			ValidatorService validatorService, UserActivationService userActivationService) {
 		super();
 		this.jobSeekerDao = jobSeekerDao;
 		this.userCheckService = userCheckService;
@@ -55,7 +55,7 @@ public class JobSeekerManager implements JobSeekerService {
 		}  if (jobSeekerDao.existsBynationalityId(jobSeeker.getNationalityId())) {
 			return new ErrorResult(jobSeeker.getNationalityId() + " Tc no Sistemde Kayıtlı");
 		} else {
-			validatorService.sendVerificationMail(jobSeeker);
+			validatorService.sendVerificationMail(jobSeeker.getEmail());
 			userActivationService.userActivation(jobSeeker);
 			this.jobSeekerDao.save(jobSeeker);
 			return new SuccessResult(" Başarılıyla kaydoldunuz");

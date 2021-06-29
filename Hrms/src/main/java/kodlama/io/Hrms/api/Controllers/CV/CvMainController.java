@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,5 +56,9 @@ public class CvMainController {
 	public DataResult<List<CvMain>> getByJobSeekerId( int jobSeekerId) {
 		return this.cvMainService.getByJobSeekerId(jobSeekerId);
 
+	}
+	@PutMapping("/update")
+	Result update(@RequestBody CvMain cvMain) {
+		return this.cvMainService.update(cvMain);
 	}
 }

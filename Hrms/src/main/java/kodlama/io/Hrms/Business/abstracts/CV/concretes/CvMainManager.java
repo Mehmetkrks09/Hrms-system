@@ -14,6 +14,7 @@ import kodlama.io.Hrms.Core.Results.DataResult;
 import kodlama.io.Hrms.Core.Results.Result;
 import kodlama.io.Hrms.Core.Results.SuccessDataResult;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
+import kodlama.io.Hrms.DataAccess.abstracts.JobSeekerDao;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.CvMainDao;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.DepartmentDao;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.ForeignLanguageDao;
@@ -30,20 +31,24 @@ public class CvMainManager implements CvMainService {
 
 	private CvMainDao cvMainDao;
 	private ImageService ımageService;
+	private DepartmentDao departmentDao;
+	private ForeignLanguageDao foreignLanguageDao;
+	private SchoolDao schoolDao;
+	private JobExperienceDao jobExperienceDao;
+	private JobSeekerDao jobSeekerDao;
 	
-
-
-
 @Autowired
-	public CvMainManager(CvMainDao cvMainDao, ImageService ımageService
-			) {
+public CvMainManager(CvMainDao cvMainDao, ImageService imageService, DepartmentDao departmentDao,
+			ForeignLanguageDao foreignLanguageDao, SchoolDao schoolDao, JobExperienceDao jobExperienceDao,JobSeekerDao jobSeekerDao) {
 		super();
 		this.cvMainDao = cvMainDao;
-		this.ımageService=ımageService;
-
+		ımageService = imageService;
+		this.departmentDao = departmentDao;
+		this.foreignLanguageDao = foreignLanguageDao;
+		this.schoolDao = schoolDao;
+		this.jobExperienceDao = jobExperienceDao;
+		this.jobSeekerDao=jobSeekerDao;
 	}
-
-	
 
 @Override
 public DataResult<CvMain> imageUpload(int cvMainId, MultipartFile multipartFile) throws IOException {
@@ -62,7 +67,20 @@ public DataResult<CvMain> imageUpload(int cvMainId, MultipartFile multipartFile)
 
 	@Override
 	public Result update(CvMainDto cvMainDto) {
-		return new SuccessResult("Data Has Been Updated");
+		CvMain cvMain = new CvMain();
+
+		cvMain.setDepartment(departmentDao.getById(cvMainDto.getDepartmentId()));
+		cvMain.setForeignLanguage(foreignLanguageDao.getById(cvMainDto.getForeignLanguageId()));	
+		cvMain.setSchool(schoolDao.getById(cvMainDto.getSchoolId()));
+		cvMain.setJobExperience(jobExperienceDao.getById(cvMainDto.getJobExperienceId()));
+	cvMain.setDescription(cvMainDto.getDescription());
+	cvMain.setGitHubLink(cvMainDto.getGitHubLink());
+	cvMain.setLinkedLink(cvMainDto.getLinkedLink());
+	cvMain.setJobSeeker(jobSeekerDao.getById(cvMainDto.getJobSeekerId()));
+	cvMain.setPhoto(cvMainDto.getPhoto());
+	
+	cvMainDao.save(cvMain);
+	return new SuccessResult("Data güncellendi");
 	}
 
 
@@ -71,7 +89,15 @@ public DataResult<CvMain> imageUpload(int cvMainId, MultipartFile multipartFile)
 	public Result add(CvMainDto cvMainDto) {
 	CvMain cvMain = new CvMain();
 	cvMain.setId(cvMainDto.getId());
-cvMain.setDescription(cvMainDto.getDescription());
+	
+	
+	cvMain.setDepartment(departmentDao.getById(cvMainDto.getDepartmentId()));
+	cvMain.setForeignLanguage(foreignLanguageDao.getById(cvMainDto.getForeignLanguageId()));	
+	cvMain.setSchool(schoolDao.getById(cvMainDto.getSchoolId()));
+	cvMain.setJobExperience(jobExperienceDao.getById(cvMainDto.getJobExperienceId()));
+	
+	cvMain.setJobSeeker(jobSeekerDao.getById(cvMainDto.getJobSeekerId()));
+	cvMain.setDescription(cvMainDto.getDescription());
 cvMain.setGitHubLink(cvMainDto.getGitHubLink());
 cvMain.setLinkedLink(cvMainDto.getLinkedLink());
 

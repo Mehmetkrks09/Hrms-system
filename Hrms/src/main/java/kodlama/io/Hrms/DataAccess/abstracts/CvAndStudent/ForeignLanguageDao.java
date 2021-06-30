@@ -10,6 +10,6 @@ import kodlama.io.Hrms.entities.concretes.CV.ForeignLanguage;
 
 public interface ForeignLanguageDao extends JpaRepository<ForeignLanguage,Integer>{
 //	List<ForeignLanguage> getByJobSeekerId(int id);
-	ForeignLanguage getById(int id);
+List<ForeignLanguage> getById(int id);
 
 }

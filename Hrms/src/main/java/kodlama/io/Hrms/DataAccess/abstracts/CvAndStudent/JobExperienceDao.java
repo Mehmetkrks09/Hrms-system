@@ -14,4 +14,5 @@ public interface JobExperienceDao extends JpaRepository<JobExperience, Integer> 
 
 //	List<JobExperience> getByJobSeekerId(int id);
 	List<JobExperience> getAllByOrderByFinishYearDesc();
+	List<JobExperience> getById(int id);
 }

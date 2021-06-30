@@ -9,6 +9,6 @@ import kodlama.io.Hrms.entities.concretes.CV.Department;
 
 
 public interface DepartmentDao extends JpaRepository<Department,Integer>{
-	
+	List<Department> getById(int id);
 //	List<Department> getByJobSeekerId(int id);
 }

@@ -34,10 +34,16 @@ public class CvMainDto {
 	
 	private String description;
 	
+	private int foreignLanguageId;
+	
+	  private int jobExperienceId;
+	  
+	  private int schoolId;
+	
+	  private int departmentId;
+	  
+	  private int jobSeekerId;
 
-	
-	
-	
 
 	
 	

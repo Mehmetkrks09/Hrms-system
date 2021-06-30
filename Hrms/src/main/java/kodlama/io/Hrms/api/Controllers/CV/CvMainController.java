@@ -27,8 +27,10 @@ import kodlama.io.Hrms.entities.concretes.JobSeeker;
 import kodlama.io.Hrms.entities.concretes.CV.CvMain;
 import kodlama.io.Hrms.entities.concretes.CV.School;
 import kodlama.io.Hrms.entities.concretes.Dtos.CvMainDto;
-@CrossOrigin
+
+
 @RestController
+@CrossOrigin
 @RequestMapping("/api/cv")
 public class CvMainController {
 	private CvMainService cvMainService;
@@ -47,10 +49,10 @@ public class CvMainController {
 	}
 
 	@PostMapping("/imageUpload")
-	public ResponseEntity<?> imageUpload(@RequestParam int JobSeeker, @RequestParam MultipartFile multipartFile)
+	public ResponseEntity<?> imageUpload(@RequestParam int jobSeeker, @RequestParam MultipartFile multipartFile)
 			throws IOException {
 
-		return new ResponseEntity<>(this.cvMainService.imageUpload(JobSeeker, multipartFile), HttpStatus.OK);
+		return new ResponseEntity<>(this.cvMainService.imageUpload(jobSeeker, multipartFile), HttpStatus.OK);
 	}
 
 	@GetMapping("/getByJobSeekerId")

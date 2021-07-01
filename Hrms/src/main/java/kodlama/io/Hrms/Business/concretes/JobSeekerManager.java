@@ -22,6 +22,7 @@ import kodlama.io.Hrms.DataAccess.abstracts.UserDao;
 import kodlama.io.Hrms.entities.concretes.JobSeeker;
 import kodlama.io.Hrms.entities.concretes.Dtos.JobAdvertisementDto;
 import kodlama.io.Hrms.entities.concretes.Dtos.JobSeekerDto;
+import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
@@ -92,4 +93,11 @@ public class JobSeekerManager implements JobSeekerService {
 		return true;
 	}
 
+	@Override
+	public DataResult<JobSeeker> getById(int id) {
+		
+return new SuccessDataResult<JobSeeker>(jobSeekerDao.getById(id),"Person Has Been Listed");
+	}
+
+	
 }

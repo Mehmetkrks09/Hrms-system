@@ -24,7 +24,9 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Inte
     List<JobAdvertisement> getByWayOfWorkingId(int wayOfWorkingId);
    
 	List<JobAdvertisement> getByIsActiveTrueAndWayOfWorkingIdAndWorkingTimeId(Integer wayOfWorkingId, Integer workingTimeId);
+	List<JobAdvertisement> getByIsActiveTrueAndWayOfWorkingIdAndCityId(Integer wayOfWorkingId, Integer cityId);
 	List<JobAdvertisement> getByIsActiveTrue(Pageable pageable);
 	List<JobAdvertisement>  getByIsActiveTrueAndWayOfWorkingIdAndWorkingTimeId(Integer wayOfWorkingId, Integer workingTimeId, Pageable pageable);
+	List<JobAdvertisement> getByIsActiveTrueAndWayOfWorkingId(int wayOfWorkingId);
 
 }

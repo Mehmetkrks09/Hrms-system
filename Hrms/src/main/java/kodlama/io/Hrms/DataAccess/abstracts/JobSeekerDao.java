@@ -9,4 +9,4 @@ public interface JobSeekerDao extends JpaRepository<JobSeeker,Integer>  {
 	boolean existsBynationalityId(String identityNumber);
 	boolean existsByemail(String email);
 	JobSeeker getById(int id);
-}
+}	

@@ -39,6 +39,11 @@ public class JobSeekersController {
 		
 		return this.jobSeekerService.getAll();
 	}
+	@GetMapping("/getById")
+	public DataResult<JobSeeker> getById(int id) {
+		
+		return this.jobSeekerService.getById(id);
+	}
 	
 	
 	@PostMapping("/register")

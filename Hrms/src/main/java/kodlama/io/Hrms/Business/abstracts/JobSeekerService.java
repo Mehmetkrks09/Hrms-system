@@ -12,4 +12,5 @@ public interface JobSeekerService {
 
 	Result register(JobSeekerDto jobSeekerDto);
 	DataResult<List<JobSeeker>> getAll();
+	DataResult< JobSeeker> getById(int id);
 }

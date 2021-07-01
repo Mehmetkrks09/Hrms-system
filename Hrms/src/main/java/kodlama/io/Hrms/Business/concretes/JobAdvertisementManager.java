@@ -130,6 +130,23 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 				"Aktif iş ilanları listelendi");
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsActiveTrueAndWayOfWorkingIdAndCityId(int wayOfWorkingId,
+			int cityId) {
+	
+		return new SuccessDataResult<List<JobAdvertisement>>(
+
+				this.jobAdvertisementDao.getByIsActiveTrueAndWayOfWorkingIdAndCityId(wayOfWorkingId,
+						cityId),
+				"Advertisements Listed by Filter");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsActiveTrueAndWayOfWorkingId(int wayOfWorkingId) {
+		
+return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByWayOfWorkingId(wayOfWorkingId),"Data Has Been Listed");
+	}
+
 
 
 }

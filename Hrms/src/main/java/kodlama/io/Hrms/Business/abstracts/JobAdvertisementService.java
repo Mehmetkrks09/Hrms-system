@@ -26,6 +26,10 @@ public interface JobAdvertisementService {
 	   DataResult<List<JobAdvertisement>> getByWayOfWorkingId(int id);
 
 	   DataResult<List<JobAdvertisement>> getByIsActiveTrueAndWayOfWorkingIdAndWorkingTimeId(int wayOfWorkingId, int workingTimeId);
+	   
+	   DataResult<List<JobAdvertisement>> getByIsActiveTrueAndWayOfWorkingIdAndCityId(int wayOfWorkingId, int cityId);
+	   
+	   DataResult<List<JobAdvertisement>> getByIsActiveTrueAndWayOfWorkingId(int wayOfWorkingId);
 		
 		
 		DataResult<List<JobAdvertisement>> getByIsActiveTrueAndWayOfWorkingIdAndWorkingTimeId(int wayOfWorkingId, int workingTimeId, Pageable pageable);

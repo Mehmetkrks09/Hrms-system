@@ -77,7 +77,7 @@ public class JobAdvertisementController {
     
     
     @GetMapping("/getAllByActivatedAndWayOfWorkingandWorkingtime")
-	public ResponseEntity<?> getAllByActivatedAndWorkingPlaceTypeAndWorkingTimeType(
+	public ResponseEntity<?> getAllByActivatedAndWorkingPlaceTypeAndWorkingTime(
 			@RequestParam(name = "wayOfWorkingId") int workingPlaceTypeId,
 			@RequestParam(name = "workingTimeId") int workingTimeTypeId) {
 		return ResponseEntity.ok(this.jobAdvertisementService
@@ -100,6 +100,23 @@ public class JobAdvertisementController {
 		Pageable allEntitiesWithPageable = PageRequest.of(pageNumber - 1, pageSize);
 		return ResponseEntity.ok(jobAdvertisementService.getByIsActiveTrueAndWayOfWorkingIdAndWorkingTimeId(wayOfWorking, workingTimeId, allEntitiesWithPageable));
 	}
+	
+	  @GetMapping("/getAllByActivatedAndWayOfWorkingandCityId")
+		public ResponseEntity<?> getAllByActivatedAndWayOfWorkingAndCityId(
+				@RequestParam(name = "wayOfWorkingId") int WayOfWorkingAndCityId,
+				@RequestParam(name = "cityId") int cityId) {
+			return ResponseEntity.ok(this.jobAdvertisementService
+					.getByIsActiveTrueAndWayOfWorkingIdAndCityId(WayOfWorkingAndCityId, cityId));
+		}
+	  
+	  @GetMapping("/getAllByActivatedAndWayOfWorking")
+		public ResponseEntity<?> getAllByActivatedAndWayOfWorking(
+				@RequestParam(name = "wayOfWorkingId") int WayOfWorkingId)
+			{
+			return ResponseEntity.ok(this.jobAdvertisementService
+					.getByIsActiveTrueAndWayOfWorkingId(WayOfWorkingId));
+		}
+
 
 	
 

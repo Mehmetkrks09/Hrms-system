@@ -20,7 +20,7 @@ import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.DepartmentDao;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.ForeignLanguageDao;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.JobExperienceDao;
 import kodlama.io.Hrms.DataAccess.abstracts.CvAndStudent.SchoolDao;
-import kodlama.io.Hrms.Service.CloudinaryService;
+
 import kodlama.io.Hrms.Service.ImageService;
 import kodlama.io.Hrms.entities.concretes.JobSeeker;
 import kodlama.io.Hrms.entities.concretes.CV.CvMain;

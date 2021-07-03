@@ -3,6 +3,7 @@ package kodlama.io.Hrms.Business.concretes;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.hql.internal.ast.tree.IsNullLogicOperatorNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +15,23 @@ import kodlama.io.Hrms.Core.Results.SuccessDataResult;
 import kodlama.io.Hrms.Core.Results.SuccessResult;
 import kodlama.io.Hrms.Core.abstracts.ValidatorService;
 import kodlama.io.Hrms.DataAccess.abstracts.EmployerDao;
+import kodlama.io.Hrms.DataAccess.abstracts.EmployerUpdateDao;
 import kodlama.io.Hrms.entities.concretes.Employer;
+import kodlama.io.Hrms.entities.concretes.EmployerUpdate;
 import kodlama.io.Hrms.entities.concretes.Dtos.EmployerDto;
 
 @Service
 public class EmployerManager implements EmployerService {
-	EmployerDao employerDao;
-	ValidatorService validatorService;
+private	EmployerDao employerDao;
+private	ValidatorService validatorService;
+private EmployerUpdateDao employerUpdateDao;
 
 	@Autowired
-	public EmployerManager(EmployerDao employerDao, ValidatorService validatorService) {
+	public EmployerManager(EmployerDao employerDao, ValidatorService validatorService,EmployerUpdateDao employerUpdateDao) {
 		super();
 		this.employerDao = employerDao;
 		this.validatorService = validatorService;
+	this.employerUpdateDao = employerUpdateDao;
 
 	}
 
@@ -74,5 +79,55 @@ employerDao.save(employer);
 
 		return true;
 	}
+
+	@Override
+    public Result update(EmployerUpdate employerUpdate) {
+        employerUpdate.setId(0);
+        employerUpdate.setCreateDay(LocalDate.now());
+
+      
+        Employer employer=this.employerDao.getById(employerUpdate.getEmployerId());
+        this.employerUpdateDao.save(employerUpdate);
+        employer.setSystemPersonnelVerify(false);
+        this.employerDao.save(employer);
+        return new SuccessResult("Güncelleme isteği gönderildi personelin onayı ardından görünür olacaktır");
+    }
+
+    @Override
+    public Result verifyUpdate(int employerId) {
+    
+    	if(!employerUpdateDao.existsByemployerId(employerId))
+    	{
+    		return new ErrorResult(employerId+" İd numaralı Employer bilgilerini Güncelleme istemedi");
+    	}
+    	else
+    	{
+    		 EmployerUpdate employerUpdate=this.employerUpdateDao.getByEmployerId(employerId);
+    	        Employer employer=this.employerDao.getById(employerId);
+
+    	        employerUpdate.setVerifyed(true);
+    	        
+    	        employerUpdate.setVerifyDate(LocalDate.now());
+    	        this.employerUpdateDao.save(employerUpdate);
+
+    	        employer.setEmail(employerUpdate.getEmail());
+    	        employer.setCompanyName(employerUpdate.getCompanyName());
+    	        employer.setPhoneNumber(employerUpdate.getPhoneNumber());
+    	        employer.setWebAddress(employerUpdate.getWebSite());
+    	        employer.setSystemPersonnelVerify(true);
+    	        employer.setCreatedOn(LocalDate.now());
+    	        this.employerDao.save(employer);
+   
+    	        this.employerUpdateDao.delete(employerUpdateDao.getByEmployerId(employerId));;
+    	        return new SuccessResult("Bilgiler güncellendi");
+    		
+    	}
+        
+       
+      
+       
+    }
+
+   
 
 }

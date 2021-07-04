@@ -66,4 +66,10 @@ public ResponseEntity<?> verifyUpdate(@RequestParam int employerId){
     }
     return ResponseEntity.badRequest().body(result);
 }
+
+@GetMapping("/getallUpdate")
+public DataResult<List<EmployerUpdate>> getAllUpdate() {
+	return this.employerService.getAllUpdate();
+}
+
 }

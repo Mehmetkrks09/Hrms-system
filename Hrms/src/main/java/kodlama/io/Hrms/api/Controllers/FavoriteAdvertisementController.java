@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,8 +19,11 @@ import kodlama.io.Hrms.Core.Results.SuccessDataResult;
 import kodlama.io.Hrms.entities.concretes.FavoriteAdvertisement;
 import kodlama.io.Hrms.entities.concretes.Dtos.FavoriteAdvertisementDto;
 
+
+
 @CrossOrigin
 @RestController
+
 @RequestMapping("/api/favoriteAdvertisement")
 public class FavoriteAdvertisementController {
 	private FavoriteAdvertisementService favoriteAdvertisementService;
@@ -50,7 +54,7 @@ public class FavoriteAdvertisementController {
 	 
 
 	    @PostMapping("/delete")
-	    Result delete(int id) {
+	    Result delete( int id) {
 	    return favoriteAdvertisementService.delete(id);
 	   	
 	    }

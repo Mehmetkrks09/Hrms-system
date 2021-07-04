@@ -13,5 +13,5 @@ public interface EmployerService {
 	DataResult<List<Employer>> getAll();
 	 Result update(EmployerUpdate employerUpdate);
 	    Result verifyUpdate(int employerId);
-
+	    DataResult<List<EmployerUpdate>> getAllUpdate();
 }

@@ -128,6 +128,12 @@ employerDao.save(employer);
        
     }
 
+	@Override
+	public DataResult<List<EmployerUpdate>> getAllUpdate() {
+		
+return new SuccessDataResult<List<EmployerUpdate>>(this.employerUpdateDao.findAll());
+}
+
    
 
 }

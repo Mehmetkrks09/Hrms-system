@@ -11,4 +11,5 @@ public interface FavoriteAdvertisementDao extends JpaRepository<FavoriteAdvertis
   List<FavoriteAdvertisement> getAllByJobSeekerId(int jobSeekerId);
    FavoriteAdvertisement findByJobSeekerIdAndJobAdvertisementId(int jobSeekerId,int advertisementId);
     FavoriteAdvertisement getById(int id);
+//    boolean existByjobAdvertisementId(int id);
 }
